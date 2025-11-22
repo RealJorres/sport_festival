@@ -29,11 +29,11 @@ class User {
   }
 
   static async create(userData) {
-    const { username, password, role = 'viewer' } = userData;
+    const { username, password, role = 'viewer', sports_id } = userData;
     try {
       const [result] = await pool.query(
-        'INSERT INTO users (username, password, role) VALUES (?, ?, ?)',
-        [username, password, role]
+        'INSERT INTO users (username, password, role, sports_id) VALUES (?, ?, ?, ?)',
+        [username, password, role, sports_id]
       );
       return this.findById(result.insertId);
     } catch (error) {
@@ -57,6 +57,11 @@ class User {
     if (role !== undefined) {
       fields.push('role = ?');
       values.push(role);
+    }
+
+    if (sports_id !== undefined) {
+      fields.push('sports_id = ?');
+      values.push(sports_id);
     }
 
     if (fields.length === 0) {
