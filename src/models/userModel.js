@@ -42,7 +42,7 @@ class User {
   }
 
   static async update(id, userData) {
-    const { username, password, role } = userData;
+    const { username, password, role, sports_id } = userData;
     const fields = [];
     const values = [];
 
