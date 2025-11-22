@@ -3,7 +3,7 @@ import pool from '../config/db.js';
 class User {
   static async findAll() {
     try {
-      const [rows] = await pool.query('SELECT id, username, role FROM users');
+      const [rows] = await pool.query('SELECT id, username, role, sports_id FROM users');
       return rows;
     } catch (error) {
       throw new Error(`Error fetching users: ${error.message}`);
